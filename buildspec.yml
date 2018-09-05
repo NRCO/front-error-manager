@@ -19,6 +19,7 @@ phases:
         if expr "${CODEBUILD_BUILD_ARN}" : ".*build/plv2prod" >/dev/null; then
           BRANCHE="prod";
         fi
+      - | 
         if expr "${$CODEBUILD_SOURCE_VERSION}" : "qual" >/dev/null; then
           BRANCHE="qual";
         fi
