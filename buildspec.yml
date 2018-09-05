@@ -20,11 +20,11 @@ phases:
           BRANCHE="prod";
         fi
       - | 
-        if expr "${$CODEBUILD_SOURCE_VERSION}" : "qual" >/dev/null; then
+        if expr "${CODEBUILD_SOURCE_VERSION}" : "qual" >/dev/null; then
           BRANCHE="qual";
         fi
       - |
-        if expr "${$CODEBUILD_SOURCE_VERSION}" : "prod" >/dev/null; then
+        if expr "${CODEBUILD_SOURCE_VERSION}" : "prod" >/dev/null; then
           BRANCHE="prod";
         fi
       - echo $BRANCHE
