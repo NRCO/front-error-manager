@@ -6,7 +6,7 @@ phases:
       - echo Loging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - REPOSITORY_URI=102888717683.dkr.ecr.eu-west-1.amazonaws.com/plv2-qual
+      - REPOSITORY_URI=102888717683.dkr.ecr.eu-west-1.amazonaws.com/plv2
       - IMAGE_TAG=$(echo `date +%s`)
       - echo $IMAGE_TAG
       - echo $CODEBUILD_BUILD_ARN
