@@ -12,7 +12,7 @@ angular.module("rest-client").controller("restController", [
             $http({
                 method: $scope.config.method || "GET",
                 url: $scope.config.url || "localhost:80",
-                data: $scope.config.url || null
+                data: $scope.config.data || null
             })
                 .then(requestHandler)
                 .catch(requestHandler);
