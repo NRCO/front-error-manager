@@ -31466,7 +31466,7 @@ if (typeof jQuery === 'undefined') {
             })();
         
 /**
- * @license AngularJS v1.7.3
+ * @license AngularJS v1.7.4
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -31566,7 +31566,7 @@ function isValidObjectMaxDepth(maxDepth) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
 
-  var url = 'https://errors.angularjs.org/1.7.3/';
+  var url = 'https://errors.angularjs.org/1.7.4/';
   var regex = url.replace('.', '\\.') + '[\\s\\S]*';
   var errRegExp = new RegExp(regex, 'g');
 
@@ -32398,15 +32398,16 @@ function arrayRemove(array, value) {
  * * If `source` is identical to `destination` an exception will be thrown.
  *
  * <br />
+ *
  * <div class="alert alert-warning">
  *   Only enumerable properties are taken into account. Non-enumerable properties (both on `source`
  *   and on `destination`) will be ignored.
  * </div>
  *
- * @param {*} source The source that will be used to make a copy.
- *                   Can be any type, including primitives, `null`, and `undefined`.
- * @param {(Object|Array)=} destination Destination into which the source is copied. If
- *     provided, must be of the same type as `source`.
+ * @param {*} source The source that will be used to make a copy. Can be any type, including
+ *     primitives, `null`, and `undefined`.
+ * @param {(Object|Array)=} destination Destination into which the source is copied. If provided,
+ *     must be of the same type as `source`.
  * @returns {*} The copy or updated `destination`, if `destination` was specified.
  *
  * @example
@@ -34253,11 +34254,11 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.7.3',
+  full: '1.7.4',
   major: 1,
   minor: 7,
-  dot: 3,
-  codeName: 'eventful-proposal'
+  dot: 4,
+  codeName: 'interstellar-exploration'
 };
 
 
@@ -34406,7 +34407,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.7.3' });
+  .info({ angularVersion: '1.7.4' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -51773,7 +51774,7 @@ function $SceDelegateProvider() {
       // If we get here, then we will either sanitize the value or throw an exception.
       if (type === SCE_CONTEXTS.MEDIA_URL || type === SCE_CONTEXTS.URL) {
         // we attempt to sanitize non-resource URLs
-        return $$sanitizeUri(maybeTrusted, type === SCE_CONTEXTS.MEDIA_URL);
+        return $$sanitizeUri(maybeTrusted.toString(), type === SCE_CONTEXTS.MEDIA_URL);
       } else if (type === SCE_CONTEXTS.RESOURCE_URL) {
         if (isResourceUrlAllowedByPolicy(maybeTrusted)) {
           return maybeTrusted;
@@ -64670,7 +64671,7 @@ var ngRefDirective = ['$parse', function($parse) {
  * For example, if an item is added to the collection, `ngRepeat` will know that all other items
  * already have DOM elements, and will not re-render them.
  *
- * All different types of tracking functions, their syntax, and and their support for duplicate
+ * All different types of tracking functions, their syntax, and their support for duplicate
  * items in collections can be found in the
  * {@link ngRepeat#ngRepeat-arguments ngRepeat expression description}.
  *
@@ -66631,7 +66632,7 @@ var SelectController =
 
     if (optionAttrs.$attr.ngValue) {
       // The value attribute is set by ngValue
-      var oldVal, hashedVal = NaN;
+      var oldVal, hashedVal;
       optionAttrs.$observe('value', function valueAttributeObserveAction(newVal) {
 
         var removal;
@@ -66803,18 +66804,6 @@ var SelectController =
  * @param {string=} ngAttrSize sets the size of the select element dynamically. Uses the
  * {@link guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes ngAttr} directive.
  *
- *
- * @knownIssue
- *
- * In Firefox, the select model is only updated when the select element is blurred. For example,
- * when switching between options with the keyboard, the select model is only set to the
- * currently selected option when the select is blurred, e.g via tab key or clicking the mouse
- * outside the select.
- *
- * This is due to an ambiguity in the select element specification. See the
- * [issue on the Firefox bug tracker](https://bugzilla.mozilla.org/show_bug.cgi?id=126379)
- * for more information, and this
- * [Github comment for a workaround](https://github.com/angular/angular.js/issues/9134#issuecomment-130800488)
  *
  * @example
  * ### Simple `select` elements with static options
@@ -67694,7 +67683,7 @@ $provide.value("$locale", {
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 /**
- * @license AngularJS v1.7.3
+ * @license AngularJS v1.7.4
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68406,7 +68395,7 @@ function sanitizeText(chars) {
 // define ngSanitize module and register $sanitize service
 angular.module('ngSanitize', [])
   .provider('$sanitize', $SanitizeProvider)
-  .info({ angularVersion: '1.7.3' });
+  .info({ angularVersion: '1.7.4' });
 
 /**
  * @ngdoc filter
@@ -93085,7 +93074,7 @@ if (!Array.prototype.indexOf) {
 })(window, document);
 
 /**
- * @license AngularJS v1.7.3
+ * @license AngularJS v1.7.4
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -96106,8 +96095,6 @@ var $$AnimationProvider = ['$animateProvider', /** @this */ function($animatePro
 
     // TODO(matsko): document the signature in a better way
     return function(element, event, options) {
-      var node = getDomNode(element);
-
       options = prepareAnimationOptions(options);
       var isStructural = ['enter', 'move', 'leave'].indexOf(event) >= 0;
 
@@ -96179,8 +96166,9 @@ var $$AnimationProvider = ['$animateProvider', /** @this */ function($animatePro
         forEach(groupedAnimations, function(animationEntry) {
           var element = animationEntry.from ? animationEntry.from.element : animationEntry.element;
           var extraClasses = options.addClass;
+
           extraClasses = (extraClasses ? (extraClasses + ' ') : '') + NG_ANIMATE_CLASSNAME;
-          var cacheKey = $$animateCache.cacheKey(node, event, extraClasses, options.removeClass);
+          var cacheKey = $$animateCache.cacheKey(element[0], animationEntry.event, extraClasses, options.removeClass);
 
           toBeSortedAnimations.push({
             element: element,
@@ -97336,7 +97324,7 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
   isFunction  = angular.isFunction;
   isElement   = angular.isElement;
 })
-  .info({ angularVersion: '1.7.3' })
+  .info({ angularVersion: '1.7.4' })
   .directive('ngAnimateSwap', ngAnimateSwapDirective)
 
   .directive('ngAnimateChildren', $$AnimateChildrenDirective)
@@ -99862,20 +99850,20 @@ angular.module("nrcomInspinia").directive("minimalizaSidebar",["$timeout",functi
 }]);
 
 /**
-* Retourne un hash int d'une chaine
-*
-* @method hashCode
-* @param  {String} str la chaine a hasher
-* @return {int}     la chaine hashée et int
-*/
-function hashCode (str){
+ * Retourne un hash int d'une chaine
+ *
+ * @method hashCode
+ * @param  {String} str la chaine a hasher
+ * @return {int}     la chaine hashée et int
+ */
+function hashCode(str) {
     var hash = 0;
-    if (str.length === 0){
+    if (str.length === 0) {
         return hash;
     }
     for (var i = 0; i < str.length; i++) {
         var char = str.charCodeAt(i);
-        hash = ((hash << 5)-hash)+char;
+        hash = (hash << 5) - hash + char;
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
@@ -99894,7 +99882,7 @@ function RNG(seed) {
     this.a = 1103515245;
     this.c = 12345;
 
-    this.state = seed ? seed : Math.floor(Math.random() * (this.m-1));
+    this.state = seed ? seed : Math.floor(Math.random() * (this.m - 1));
 }
 RNG.prototype.nextInt = function() {
     this.state = (this.a * this.state + this.c) % this.m;
@@ -99915,7 +99903,31 @@ RNG.prototype.choice = function(array) {
     return array[this.nextRange(0, array.length)];
 };
 
+angular.module("nrcomInspinia").filter("randomColor", function() {
+    var possibleColor = [
+        "success",
+        "primary",
+        "info",
+        "yellow",
+        "danger",
+        "gray",
+        "teal",
+        "green",
+        "aqua",
+        "warning",
+        "red",
+        "black",
+        "purple",
+        "navy",
+        "light-blue",
+        "orange",
+        "maroon"
+    ];
 
+    return function(word) {
+        return new RNG(word.toLowerCase()).choice(possibleColor);
+    };
+});
 
 /**
  * @ngdoc directives
@@ -99927,40 +99939,42 @@ RNG.prototype.choice = function(array) {
  * @example <caption>integration html</caption>
  *          <contactCircle></contactCircle>
  */
-angular.module("nrcomInspinia")
-.directive("contactCircle", [ function() {
-    return {
-        link: function(scope){
-            var possibleColor = [ "success","primary","info","yellow","danger","gray","teal","green","aqua","warning","red","black","purple","navy","light-blue","orange","maroon" ];
-
-            scope.colorClassFn = function() {
+angular.module("nrcomInspinia").directive("contactCircle", [
+    "$filter",
+    function($filter) {
+        return {
+            link: function(scope) {
+                if (!scope.word) {
+                    scope.word = "";
+                }
                 var wordArray = scope.word.split(" ");
-                if(wordArray.length === 1 ){
+                if (wordArray.length === 1) {
                     scope.initials = wordArray[0].charAt(0).toUpperCase();
-                }else {
-                    scope.initials = wordArray[0].charAt(0).toUpperCase() + wordArray[1].charAt(0).toUpperCase();
-                }
-                if(!scope.colorClass){
-                    var rng = new RNG(scope.word.toLowerCase());
-                    return rng.choice( possibleColor);
-                }else {
-                    return scope.colorClass;
+                } else {
+                    scope.initials =
+                        wordArray[0].charAt(0).toUpperCase() +
+                        wordArray[1].charAt(0).toUpperCase();
                 }
 
-            }
-
-        },
-        scope: {
-            word : "@",
-            colorClass : "@",
-            multiple : "@",
-            icon : "@",
-            image : "@"
-        },
-        templateUrl: "./directives/widgets/contactCircle/contactCircle.html",
-        restrict: "EA"
-    };
-}]);
+                if (scope.colorClass) {
+                    return (scope.color = scope.colorClass());
+                } else {
+                    return (scope.color = $filter("randomColor")(scope.word));
+                }
+            },
+            scope: {
+                word: "@",
+                colorClass: "@",
+                multiple: "@",
+                icon: "@",
+                image: "@"
+            },
+            templateUrl:
+                "./directives/widgets/contactCircle/contactCircle.html",
+            restrict: "EA"
+        };
+    }
+]);
 
 /**
  * @ngdoc directives
@@ -100107,74 +100121,95 @@ angular.module("nrcomInspinia")
 
 var gridCellStruct = {
     scope: {
-        "data" : "=",
-        "header" : "=",
-        "rowIndex" : "=",
-        "cellIndex" : "=",
-        "clickRow" : "="
+        data: "=",
+        header: "=",
+        rowIndex: "=",
+        cellIndex: "=",
+        clickRow: "="
     },
-    link : function (scope) {
-
-        scope.getValue = function(){
-            if(scope.header.render){
+    link: function(scope) {
+        scope.getValue = function() {
+            if (scope.header.render && scope.header.render(scope.data)) {
                 return scope.header.render(scope.data);
-            }else if(scope.header.field){
-                return scope.data[scope.header.field];
-            }else {
-                return scope.data;
+            } else if (
+                scope.header.field &&
+                scope.header.field.split(".").reduce(function(obj, prop) {
+                    return obj[prop];
+                }, scope.data)
+            ) {
+                return scope.header.field
+                    .split(".")
+                    .reduce(function(obj, prop) {
+                        return obj[prop];
+                    }, scope.data);
+            } else {
+                return "";
             }
+        };
 
-        }
-
-        scope.onClickCell = function(){
+        scope.onClickCell = function() {
             if (scope.header.clickCell) {
-                scope.header.clickCell(scope.getValue(),scope.data,scope.header,scope.rowIndex,scope.cellIndex);
-            }else if(angular.isFunction(scope.clickRow)) {
-                scope.clickRow(scope.data,scope.rowIndex);
+                scope.header.clickCell(
+                    scope.getValue(),
+                    scope.data,
+                    scope.header,
+                    scope.rowIndex,
+                    scope.cellIndex
+                );
+            } else if (angular.isFunction(scope.clickRow)) {
+                scope.clickRow(scope.data, scope.rowIndex);
             }
-        }
+        };
     },
     replace: true,
-    restrict : "A"
+    restrict: "A"
 };
 
+angular.module("nrcomInspinia").directive("gridCellAction", [
+    function() {
+        var struct = angular.copy(gridCellStruct);
+        struct.scope.buttons = "=";
+        struct.templateUrl =
+            "./directives/widgets/grid/gridCell/gridCellAction.html";
+        return struct;
+    }
+]);
 
-angular.module("nrcomInspinia")
-.directive("gridCellAction", [ function() {
-    var struct =  angular.copy(gridCellStruct);
-    struct.scope.buttons = "=";
-    struct.templateUrl= "./directives/widgets/grid/gridCell/gridCellAction.html";
-    return struct;
-}]);
+angular.module("nrcomInspinia").directive("gridCellText", [
+    function() {
+        var struct = angular.copy(gridCellStruct);
+        struct.templateUrl =
+            "./directives/widgets/grid/gridCell/gridCellText.html";
+        return struct;
+    }
+]);
 
-angular.module("nrcomInspinia")
-.directive("gridCellText", [ function() {
-    var struct =  angular.copy(gridCellStruct);
-    struct.templateUrl= "./directives/widgets/grid/gridCell/gridCellText.html";
-    return struct;
-}]);
+angular.module("nrcomInspinia").directive("gridCellCircle", [
+    function() {
+        var struct = angular.copy(gridCellStruct);
+        struct.templateUrl =
+            "./directives/widgets/grid/gridCell/gridCellCircle.html";
+        return struct;
+    }
+]);
 
+angular.module("nrcomInspinia").directive("gridCellTextCircle", [
+    function() {
+        var struct = angular.copy(gridCellStruct);
+        struct.templateUrl =
+            "./directives/widgets/grid/gridCell/gridCellTextCircle.html";
+        return struct;
+    }
+]);
 
-angular.module("nrcomInspinia")
-.directive("gridCellCircle", [ function() {
-    var struct =  angular.copy(gridCellStruct);
-    struct.templateUrl= "./directives/widgets/grid/gridCell/gridCellCircle.html";
-    return struct;
-}]);
-
-angular.module("nrcomInspinia")
-.directive("gridCellTextCircle", [ function() {
-    var struct =  angular.copy(gridCellStruct);
-    struct.templateUrl= "./directives/widgets/grid/gridCell/gridCellTextCircle.html";
-    return struct;
-}]);
-
-angular.module("nrcomInspinia")
-.directive("gridCellHtml", [ function() {
-    var struct =  angular.copy(gridCellStruct);
-    struct.templateUrl= "./directives/widgets/grid/gridCell/gridCellHtml.html";
-    return struct;
-}]);
+angular.module("nrcomInspinia").directive("gridCellHtml", [
+    function() {
+        var struct = angular.copy(gridCellStruct);
+        struct.templateUrl =
+            "./directives/widgets/grid/gridCell/gridCellHtml.html";
+        return struct;
+    }
+]);
 
 angular.module("nrcomInspinia")
 .directive("gridRow", [ "$log", function() {
@@ -101133,217 +101168,224 @@ function(appResource,globals) {
     };
 }]);
 
-angular.module("nrcomInspinia")
-.provider("stores",function StoresProvider() {
+angular.module("nrcomInspinia").provider("stores", function StoresProvider() {
     "use strict";
 
     var storesConfig = {};
     var stores = {};
 
-    this.addStore = function(name,config){
-        if( storesConfig[name] ){
-            console.error("Un store avec le nom "+name+" à déja été défini");
-        }else {
-            storesConfig[name] = config ;
-        }
-    }
-
-    this.$get = [
-
-        "storesFactory",
-
-        function storesService(storesFactory) {
-            this.getStore = function(name){
-                if( stores[name] ){
-                    return stores[name];
-                }else if( storesConfig[name] ){
-                    stores[name] = storesFactory(storesConfig[name]);
-                    return this.getStore(name);
-                }else{
-                    console.error("Aucun store avec le nom "+name+" a été défini");
-                }
-
-            }
-
-            return this;
-        }
-
-    ];
-
-});
-
-angular.module("nrcomInspinia")
-.factory("storesFactory",[
-"appResourceProxy","$q","$filter",
-function(appResourceProxy,$q,$filter){
-
-    var me = this;
-
-    me.methods = {
-        "sendItem" : {
-            "post" : true,
-            "put": true
-        },
-        "data" : {
-            "get" : true,
-            "search" : true
-        }
-    }
-
-    me.methodsWithData = {
-        'post' : true,
-        'put': true
-    }
-
-    me.buildMethode = function(name,store){
-        if(me.methods.sendItem[name]){
-            return function(item,args) {
-                return store.service[name](item,args);
-            }
-        }else if(me.methods.data[name]){
-            return function(args) {
-                store.mode = name;
-                return $q(function(resolve, reject) {
-                    store.service[name](false, store.getArgs(args) )
-                    .then(function(data){
-                        store.data.length = 0;
-                        store.data.push.apply(store.data, data[0]);
-                        store.total=data[1];
-                        resolve(data[0]);
-                    }).catch(function(err){
-                        reject(err);
-                    });
-                });
-            }
-        }else if(name === "delete"){
-            return function(args) {
-                if(angular.isString(args)){
-                    return store.service[name]({_id:args});
-                }else {
-                    return store.service[name]({_id:args._id});
-                }
-            }
-        }else {
-            return function(args) {
-                return store.service[name](false,args);
-            }
-        }
-    }
-
-    me.createMethods = function(store){
-        for (var i = 0; i < store.service.methods.length; i++) {
-            var method = store.service.methods[i]
-            store[ method ] = me.buildMethode(method,store);
+    this.addStore = function(name, config) {
+        if (storesConfig[name]) {
+            console.error(
+                "Un store avec le nom " + name + " à déja été défini"
+            );
+        } else {
+            storesConfig[name] = config;
         }
     };
 
-    me.createStore = function(config){
+    this.$get = [
+        "storesFactory",
 
-        var store = {};
+        function storesService(storesFactory) {
+            this.getStore = function(name) {
+                if (stores[name]) {
+                    return stores[name];
+                } else if (storesConfig[name]) {
+                    stores[name] = storesFactory(storesConfig[name]);
+                    return this.getStore(name);
+                } else {
+                    console.error(
+                        "Aucun store avec le nom " + name + " a été défini"
+                    );
+                }
+            };
 
-        store.data = [];
+            return this;
+        }
+    ];
+});
 
-        store.page = 0;
-        store.pagination = 25;
+console.log("=");
 
-        store.args = {
-            filter : [],
-            limit : store.pagination,
-            start : 0,
-            sort : []
+angular.module("nrcomInspinia").factory("storesFactory", [
+    "appResourceProxy",
+    "$q",
+    "$filter",
+    function(appResourceProxy, $q, $filter) {
+        var me = this;
+
+        me.methods = {
+            sendItem: {
+                post: true,
+                put: true
+            },
+            data: {
+                get: true,
+                search: true
+            }
         };
 
-        store.getArgs = function(args){
-            if( !args ){
-                args = {};
-            }
-            var argsPossibilities = [ "filter","limit","start","sort" ];
-            for (var i = 0; i < argsPossibilities.length; i++) {
-                var argsPossibility = argsPossibilities[i];
-                if(!args[argsPossibility]){
-                    args[argsPossibility] = store.args[argsPossibility];
-                }
-            }
-            return args;
+        me.methodsWithData = {
+            post: true,
+            put: true
         };
 
-        store.nextPage=function(){
-            return store._applyPagination(1);
-        }
-
-        store.prevPage=function(){
-            return store._applyPagination(-1);
-        }
-
-        store.setPage=function(page){
-            return store._applyPagination( page - store.page );
-        }
-
-        store.setLimit=function(limite){
-            store.pagination = limite;
-            store.args.limit = limite;
-            return store._applyPagination( store.page );
-        }
-
-        store.getPageNumber=function(){
-            if( Math.floor(store.total / store.pagination) == ( store.total / store.pagination ) ){
-                return store.total / store.pagination;
-            }else {
-                return Math.floor( store.total / store.pagination )+1;
+        me.buildMethode = function(name, store) {
+            if (me.methods.sendItem[name]) {
+                return function(item, args) {
+                    return store.service[name](item, args);
+                };
+            } else if (me.methods.data[name]) {
+                return function(args) {
+                    store.mode = name;
+                    return $q(function(resolve, reject) {
+                        store.service[name](false, store.getArgs(args))
+                            .then(function(data) {
+                                store.data = data[0];
+                                // store.data.length = 0;
+                                // angular.forEach(data[0],function(value) {
+                                //     this.push(value);
+                                // },store.data)
+                                // store.data = data[0].slice(0);
+                                store.total = data[1];
+                            })
+                            .catch(function(err) {
+                                reject(err);
+                            });
+                    });
+                };
+            } else if (name === "delete") {
+                return function(args) {
+                    if (angular.isString(args)) {
+                        return store.service[name]({ _id: args });
+                    } else {
+                        return store.service[name]({ _id: args._id });
+                    }
+                };
+            } else {
+                return function(args) {
+                    return store.service[name](false, args);
+                };
             }
-        }
+        };
 
-        store._applyPagination = function(offset){
-            return $q(function(resolve, reject) {
+        me.createMethods = function(store) {
+            for (var i = 0; i < store.service.methods.length; i++) {
+                var method = store.service.methods[i];
+                store[method] = me.buildMethode(method, store);
+            }
+        };
 
-                if( store.page + offset > store.total / store.pagination ){
-                    store.page = (store.total - ( store.total % store.pagination )) / store.pagination ;
+        me.createStore = function(config) {
+            var store = {};
+
+            store.data = [];
+
+            store.page = 0;
+            store.pagination = 25;
+
+            store.args = {
+                filter: [],
+                limit: store.pagination,
+                start: 0,
+                sort: []
+            };
+
+            store.getArgs = function(args) {
+                if (!args) {
+                    args = {};
                 }
-                else if( store.page + offset < 0 ){
-                    store.page = 0;
-                }else {
-                    store.page += offset;
+                var argsPossibilities = ["filter", "limit", "start", "sort"];
+                for (var i = 0; i < argsPossibilities.length; i++) {
+                    var argsPossibility = argsPossibilities[i];
+                    if (!args[argsPossibility]) {
+                        args[argsPossibility] = store.args[argsPossibility];
+                    }
                 }
-                store.args.limit = store.pagination;
-                store.args.start = store.pagination*store.page;
+                return args;
+            };
 
-                store.getData().then(function(data){
-                    resolve(data);
+            store.nextPage = function() {
+                return store._applyPagination(1);
+            };
+
+            store.prevPage = function() {
+                return store._applyPagination(-1);
+            };
+
+            store.setPage = function(page) {
+                return store._applyPagination(page - store.page);
+            };
+
+            store.setLimit = function(limite) {
+                store.pagination = limite;
+                store.args.limit = limite;
+                return store._applyPagination(store.page);
+            };
+
+            store.getPageNumber = function() {
+                if (
+                    Math.floor(store.total / store.pagination) ==
+                    store.total / store.pagination
+                ) {
+                    return store.total / store.pagination;
+                } else {
+                    return Math.floor(store.total / store.pagination) + 1;
+                }
+            };
+
+            store._applyPagination = function(offset) {
+                return $q(function(resolve, reject) {
+                    if (store.page + offset > store.total / store.pagination) {
+                        store.page =
+                            (store.total - store.total % store.pagination) /
+                            store.pagination;
+                    } else if (store.page + offset < 0) {
+                        store.page = 0;
+                    } else {
+                        store.page += offset;
+                    }
+                    store.args.limit = store.pagination;
+                    store.args.start = store.pagination * store.page;
+
+                    store.getData().then(function(data) {
+                        resolve(data);
+                    });
                 });
+            };
 
+            store.getData = function() {
+                if (store.mode == "get") {
+                    return store.simpleSearch("");
+                } else {
+                    return store.simpleSearch(store.searchTerms);
+                }
+            };
+
+            store.simpleSearch = function(searchTerms) {
+                if (!searchTerms || searchTerms === "") {
+                    return store.get();
+                } else {
+                    store.searchTerms = searchTerms;
+                    return store.search({
+                        query: "*:*" + searchTerms + "*"
+                    });
+                }
+            };
+
+            store.service = appResourceProxy(config.url, false, {
+                showTotal: true
             });
-        }
 
-        store.getData = function(){
-            if(store.mode == "get" ){
-                return store.simpleSearch("");
-            }else {
-                return store.simpleSearch(store.searchTerms);
-            }
-        }
+            me.createMethods(store);
 
-        store.simpleSearch = function(searchTerms){
-            if ( (!searchTerms) || searchTerms === "" ) {
-                return store.get();
-            }else {
-                store.searchTerms = searchTerms;
-                return store.search({
-                    query: "*:*" + searchTerms + "*"
-                });
-            }
-        }
+            return store;
+        };
 
-        store.service = appResourceProxy( config.url,false,{showTotal : true} );
-
-        me.createMethods(store);
-
-        return store;
-
+        return me.createStore;
     }
-
-    return me.createStore;
-
-}]);
+]);
 
 angular.module("nrcomInspinia")
 .filter("ago",function(){
@@ -102334,7 +102376,7 @@ angular.module('nrcomInspinia').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('./directives/widgets/contactCircle/contactCircle.html',
-    "<div class=\"contact-circle inspinia-{{colorClassFn()}}\" ng-class=\" multiple ? 'cc-'+multiple+'x' : '' \">\n" +
+    "<div class=\"contact-circle\" ng-class=\"[ multiple ? 'cc-'+multiple+'x' : '', 'inspinia-'+color ]\">\n" +
     "    <span ng-if=\"!icon && !image\">\n" +
     "        {{initials}}\n" +
     "    </span>\n" +
