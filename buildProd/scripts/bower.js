@@ -31466,7 +31466,7 @@ if (typeof jQuery === 'undefined') {
             })();
         
 /**
- * @license AngularJS v1.7.4
+ * @license AngularJS v1.7.5
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -31566,7 +31566,7 @@ function isValidObjectMaxDepth(maxDepth) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
 
-  var url = 'https://errors.angularjs.org/1.7.4/';
+  var url = 'https://errors.angularjs.org/1.7.5/';
   var regex = url.replace('.', '\\.') + '[\\s\\S]*';
   var errRegExp = new RegExp(regex, 'g');
 
@@ -34254,11 +34254,11 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.7.4',
+  full: '1.7.5',
   major: 1,
   minor: 7,
-  dot: 4,
-  codeName: 'interstellar-exploration'
+  dot: 5,
+  codeName: 'anti-prettification'
 };
 
 
@@ -34407,7 +34407,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.7.4' });
+  .info({ angularVersion: '1.7.5' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -59285,6 +59285,8 @@ function classDirective(name, selector) {
   }
 
   function toClassString(classValue) {
+    if (!classValue) return classValue;
+
     var classString = classValue;
 
     if (isArray(classValue)) {
@@ -59293,6 +59295,8 @@ function classDirective(name, selector) {
       classString = Object.keys(classValue).
         filter(function(key) { return classValue[key]; }).
         join(' ');
+    } else if (!isString(classValue)) {
+      classString = classValue + '';
     }
 
     return classString;
@@ -67683,7 +67687,7 @@ $provide.value("$locale", {
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 /**
- * @license AngularJS v1.7.4
+ * @license AngularJS v1.7.5
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68395,7 +68399,7 @@ function sanitizeText(chars) {
 // define ngSanitize module and register $sanitize service
 angular.module('ngSanitize', [])
   .provider('$sanitize', $SanitizeProvider)
-  .info({ angularVersion: '1.7.4' });
+  .info({ angularVersion: '1.7.5' });
 
 /**
  * @ngdoc filter
@@ -93074,7 +93078,7 @@ if (!Array.prototype.indexOf) {
 })(window, document);
 
 /**
- * @license AngularJS v1.7.4
+ * @license AngularJS v1.7.5
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -97324,7 +97328,7 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
   isFunction  = angular.isFunction;
   isElement   = angular.isElement;
 })
-  .info({ angularVersion: '1.7.4' })
+  .info({ angularVersion: '1.7.5' })
   .directive('ngAnimateSwap', ngAnimateSwapDirective)
 
   .directive('ngAnimateChildren', $$AnimateChildrenDirective)
@@ -101196,7 +101200,7 @@ angular.module("nrcomInspinia").provider("stores", function StoresProvider() {
                     return this.getStore(name);
                 } else {
                     console.error(
-                        "Aucun store avec le nom " + name + " a été défini"
+                        "Aucun store avec le nom " + name + " n'a été défini"
                     );
                 }
             };
@@ -101205,8 +101209,6 @@ angular.module("nrcomInspinia").provider("stores", function StoresProvider() {
         }
     ];
 });
-
-console.log("=");
 
 angular.module("nrcomInspinia").factory("storesFactory", [
     "appResourceProxy",
@@ -101387,31 +101389,120 @@ angular.module("nrcomInspinia").factory("storesFactory", [
     }
 ]);
 
-angular.module("nrcomInspinia")
-.filter("ago",function(){
+angular
+    .module("nrcomInspinia")
+    .provider("socketIos", function webscoketProvider() {
+        var _socketIosConfig = {};
+        var _socketIos = {};
 
-    return function(date , type) {
-        if(!type) {
-            type  = "abrev";
+        this.addWebsocket = function(name, url, eventName) {
+            if (_socketIosConfig[name]) {
+                console.error(
+                    "Un socketIo avec le nom " + name + " a déja été défini"
+                );
+            } else {
+                _socketIosConfig[name] = {
+                    url: url,
+                    eventName: eventName
+                };
+            }
+        };
+
+        this.$get = [
+            "socketIosFactory",
+            function socketIosService(socketIosFactory) {
+                this.getWebsocket = function(name) {
+                    if (_socketIos[name]) {
+                        return _socketIos[name];
+                    } else if (_socketIosConfig[name]) {
+                        _socketIos[name] = socketIosFactory(
+                            _socketIosConfig[name].url,
+                            _socketIosConfig[name].eventName
+                        );
+                        return this.getWebsocket(name);
+                    } else {
+                        console.error(
+                            "Aucun socketIo avec le nom " +
+                                name +
+                                " n'a été défini"
+                        );
+                    }
+                };
+
+                return this;
+            }
+        ];
+    });
+
+angular.module("nrcomInspinia").factory("socketIosFactory", [
+    "keycloak",
+    "globals",
+    "$timeout",
+    function(keycloak, globals, $timeout) {
+        var createWebsocket = function(url, eventName) {
+            var socket = io(window.location.host, {
+                path: globals.apiUri + url
+            });
+
+            socket.on("disconnect", function(reason) {
+                console.log("socket " + eventName + " disconnect", reason);
+            });
+            socket.on("close", function(reason) {
+                console.log("socket " + eventName + " close", reason);
+            });
+            socket.on("error", function(reason) {
+                console.log("socket " + eventName + " error", reason);
+            });
+
+            socket.on("connect", function() {
+                keycloak.updateToken(5).success(function() {
+                    socket.emit("auth", keycloak.token);
+                });
+            });
+
+            socket.on("auth", function() {
+                console.log("socket " + eventName + " auth sucess");
+            });
+
+            socket.on(eventName, function(data) {
+                console.log(eventName, data);
+                if (socket.onMessage) {
+                    socket.onMessage(data);
+                }
+            });
+
+            return socket;
+        };
+
+        return createWebsocket;
+    }
+]);
+
+angular.module("nrcomInspinia").filter("ago", function() {
+    return function(date, type) {
+        date = new Date(date);
+        if (!type) {
+            type = "abrev";
         }
         var timeOffset = [
-            {long: " ans", abrev: " ans", duration: 31536000},
-            {long: " mois", abrev: " mois", duration: 2592000},
-            {long: " jours", abrev: " j", duration: 86400},
-            {long: " heures", abrev: " h", duration: 3600},
-            {long: " minutes", abrev: " min", duration: 60},
-            {long: " secondes", abrev: " s", duration: 1}
+            { long: " ans", abrev: " ans", duration: 31536000 },
+            { long: " mois", abrev: " mois", duration: 2592000 },
+            { long: " jours", abrev: " j", duration: 86400 },
+            { long: " heures", abrev: " h", duration: 3600 },
+            { long: " minutes", abrev: " min", duration: 60 },
+            { long: " secondes", abrev: " s", duration: 1 }
         ];
         var seconds = Math.floor((new Date() - date) / 1000),
-        interval  = 0;
+            interval = 0;
+
+        seconds += 1;
 
         for (var i = 0; i < timeOffset.length; i++) {
             interval = Math.floor(seconds / timeOffset[i].duration);
-            if(interval>=1){
+            if (interval >= 1) {
                 return interval + timeOffset[i][type];
             }
         }
-
     };
 });
 
@@ -101532,6 +101623,15 @@ angular.module("nrcomInspinia")
     return input;
   };
 });
+
+angular.module("nrcomInspinia").filter("replace", [
+    function() {
+        return function(input, from, to) {
+            var regex = new RegExp(from, "g");
+            return input.replace(regex, to);
+        };
+    }
+]);
 
 /**
  * INSPINIA - Responsive Admin Theme
