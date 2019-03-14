@@ -38,8 +38,8 @@ module.exports = function(grunt) {
         "bower_components/ejs/ejs.js",
         "bower_components/angular-ui-ace/ui-ace.js",
         "bower_components/sweetalert/dist/sweetalert.min.js",
-        "bower_components/nrcom-inspinia/dist/scripts/app.js",
-        "bower_components/nrcom-inspinia/dist/scripts/app.templates.js"
+        "bower_components/cornaline/dist/scripts/app.js",
+        "bower_components/cornaline/dist/scripts/app.templates.js"
     ];
 
     var bowerFonts = [
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         "bower_components/angular-loading-bar/build/loading-bar.css",
         "bower_components/sweetalert/dist/sweetalert.css",
         "bower_components/angular-ui-select/dist/select.min.css",
-        // "bower_components/nrcom-inspinia/dist/style/style.css", // Commenté pour overide le style
+        // "bower_components/cornaline/dist/style/style.css", // Commenté pour overide le style
         "bower_components/font-awesome/css/font-awesome.css",
         "bower_components/textAngular/dist/textAngular.css",
         "bower_components/ng-material-floating-button/mfb/dist/mfb.css"
