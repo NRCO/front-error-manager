@@ -4,8 +4,7 @@
         "angular": "^1.6.4",
         "bootstrap": "^3.3.7",
         "jquery": "^3.1.1",
-        "nrcom-inspinia":
-            "git+ssh://git@github.com/NRCommunication/nrcom-inspinia.git",
+        "cornaline": "git+ssh://git@github.com/NRCO/cornaline.git",
         "normalize-css": "^6.0.0",
         "jquery-ui": "^1.12.1",
         "angular-ui-router": "^1.0.0",
